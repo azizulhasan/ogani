@@ -23,6 +23,21 @@ jQuery(document).ready(function($) {
         });
     }
 
+    /* Calender jQuery **/
+
+    if ($("div.second").length) {
+
+        $(document).ready(function() {
+            var table = $('div.second').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf', 'print', 'colvis']
+            });
+
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+        });
+    }
+
 
     if ($("#example2").length) {
 

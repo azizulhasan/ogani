@@ -23,28 +23,79 @@
     <!-- Product Details Section Begin -->
     <section class="product-details spad">
         <div class="container">
+        @if(isset($product) && $product !="")
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="img/product/details/product-details-1.jpg" alt="">
+                                src="@if(strpos($product[0]->default_picture , 'http://') !==false)
+                             {{$product[0]->default_picture}};
+                        @else
+                        {{asset('storage/products/default_picture/'. $product[0]->default_picture)}}
+                            
+                        @endif" alt="{{$product[0]->name}}">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="img/product/details/product-details-2.jpg"
-                                src="img/product/details/thumb-1.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-3.jpg"
-                                src="img/product/details/thumb-2.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-5.jpg"
-                                src="img/product/details/thumb-3.jpg" alt="">
-                            <img data-imgbigurl="img/product/details/product-details-4.jpg"
-                                src="img/product/details/thumb-4.jpg" alt="">
+                            <img data-imgbigurl="@if(strpos($product[0]->picture2 , 'http://') !==false)
+                             {{$product[0]->picture2}};
+                        @else
+                        {{asset('storage/products/gallery/'. $product[0]->picture2)}}
+                            
+                        @endif"
+                                src="@if(strpos($product[0]->picture2 , 'http://') !==false)
+                             {{$product[0]->picture2}};
+                        @else
+                        {{asset('storage/products/gallery/'. $product[0]->picture2)}}
+                            
+                        @endif" alt="{{$product[0]->name}}">
+
+
+                            <img data-imgbigurl="@if(strpos($product[0]->picture3 , 'http://') !==false)
+                             {{$product[0]->picture3}};
+                        @else
+                        {{asset('storage/products/gallery/'. $product[0]->picture3)}}
+                            
+                        @endif"
+                                src="@if(strpos($product[0]->picture3 , 'http://') !==false)
+                             {{$product[0]->picture3}};
+                        @else
+                        {{asset('storage/products/gallery/'. $product[0]->picture3)}}
+                            
+                        @endif" alt="{{$product[0]->name}}">
+
+
+                            <img data-imgbigurl="@if(strpos($product[0]->picture4 , 'http://') !==false)
+                             {{$product[0]->picture4}};
+                        @else
+                        {{asset('storage/products/gallery/'. $product[0]->picture4)}}
+                            
+                        @endif"
+                                src="@if(strpos($product[0]->picture4 , 'http://') !==false)
+                             {{$product[0]->picture4}};
+                        @else
+                        {{asset('storage/products/gallery/'. $product[0]->picture4)}}
+                            
+                        @endif" alt="{{$product[0]->name}}">
+
+                            <img data-imgbigurl="@if(strpos($product[0]->picture1 , 'http://') !==false)
+                             {{$product[0]->picture1}};
+                        @else
+                        {{asset('storage/products/gallery/'. $product[0]->picture1)}}
+                            
+                        @endif"
+                                src="@if(strpos($product[0]->picture1 , 'http://') !==false)
+                             {{$product[0]->picture1}};
+                        @else
+                        {{asset('storage/products/gallery/'. $product[0]->picture1)}}
+                            
+                        @endif" alt="{{$product[0]->name}}">
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>Vetgetable’s Package</h3>
+                        <h3>{{$product[0]->name}}</h3>
                         <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -54,9 +105,7 @@
                             <span>(18 reviews)</span>
                         </div>
                         <div class="product__details__price">$50.00</div>
-                        <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
-                            vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
-                            quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
+                        <p>{{$product[0]->detail}}</p>
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
@@ -69,7 +118,7 @@
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                            <li><b>Weight</b> <span>0.5 kg</span></li>
+                            <li><b>Weight</b> <span>{{$product[0]->unit_name}}</span></li>
                             <li><b>Share on</b>
                                 <div class="share">
                                     <a href="#"><i class="fa fa-facebook"></i></a>
@@ -101,24 +150,7 @@
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus
-                                        suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam
-                                        vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat,
-                                        accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a
-                                        pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula
-                                        elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus
-                                        et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam
-                                        vel, ullamcorper sit amet ligula. Proin eget tortor risus.</p>
-                                        <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
-                                        ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
-                                        elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
-                                        porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
-                                        nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed
-                                        porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum
-                                        sed sit amet dui. Proin eget tortor risus.</p>
+                                    <p>{{$product[0]->detail}}</p>
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
@@ -162,6 +194,7 @@
                     </div>
                 </div>
             </div>
+        @endif
         </div>
     </section>
     <!-- Product Details Section End -->

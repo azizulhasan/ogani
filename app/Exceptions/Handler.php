@@ -4,9 +4,11 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
-
+use Symfony\Component\HttpFoundation\Response;
+use App\Exceptions\ExceptionTrait;
 class Handler extends ExceptionHandler
 {
+    use ExceptionTrait;
     /**
      * A list of the exception types that are not reported.
      *
@@ -50,6 +52,15 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        return parent::render($request, $exception);
+        // dd($request);
+        // return $request;
+
+        if($request->expectsJson()){
+          return $this->apiExceptions($request, $exception);
+        }
+        
+
+
+            return parent::render($request, $exception);
     }
 }

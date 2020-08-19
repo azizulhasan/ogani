@@ -35,73 +35,35 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody id="cartItem">
+                               @if(isset($items) && count($items)>0)
+                               @foreach($items as  $item)
+                               <tr data-id="{{$item->id}}" id="singleItem-{{$item->id}}">
                                     <td class="shoping__cart__item">
                                         <img src="img/cart/cart-1.jpg" alt="">
-                                        <h5>Vegetable’s Package</h5>
+                                        <h5>{{$item->name}}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        $55.00
+                                    BDT {{$item->price}}
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="text" value="1">
+                                                <input id="singleItemQnt-{{$item->id}}" type="text" value="{{$item->quantity}}">
                                             </div>
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
-                                        $110.00
+                                        BDT {{$item->price*$item->quantity}}
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-2.jpg" alt="">
-                                        <h5>Fresh Garden Vegetable</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $39.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $39.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="img/cart/cart-3.jpg" alt="">
-                                        <h5>Organic Bananas</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        $69.00
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        $69.99
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
+                               @endforeach
+                               @else
+                               <tr><td span="4"><h1>Your Cart Is Empty</h1></td></tr>
+                               @endif
                             </tbody>
                         </table>
                     </div>
@@ -111,7 +73,7 @@
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
                         <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                        <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+                        <a href="{{url('updateCart')}}" id="updateCart" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
                             Upadate Cart</a>
                     </div>
                 </div>
@@ -130,8 +92,10 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                            <li>Subtotal <span>
+                               BDT {{$subtotal}}
+                            </span></li>
+                            <li>Total <span>BDT {{$total}}</span></li>
                         </ul>
                         <a href="{{url('/check_out')}}" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>

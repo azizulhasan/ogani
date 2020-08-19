@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="url" content="{{url('/')}}">
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +27,14 @@
     <link rel="stylesheet" href="{{ asset('assets/front/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/front/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/front/css/style.css') }}" type="text/css">
+
+
+    @if(isset($styles) )
+        @foreach($styles as $key=> $value)
+        <link rel="stylesheet" href="{{asset($value)}}" rel="stylesheet">
+       
+        @endforeach
+    @endif
 </head>
 
 <body>
@@ -43,7 +52,7 @@
         <div class="humberger__menu__cart">
             <ul>
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="{{url('/viewCart')}}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
@@ -158,9 +167,14 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="header__cart">
+                    
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a  href="{{url('/viewCart')}}"><i id="shoppingCart" class="fa fa-shopping-bag"><span>
+                            @if(isset($items) && count($items)>0)
+                            {{count($items)}}
+                            @endif
+                            </span></i></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>
@@ -254,6 +268,7 @@
     <script src="{{ asset('assets/front/js/mixitup.min.js') }}"></script>
     <script src="{{ asset('assets/front/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('assets/front/js/main.js') }}"></script>
+    <script src="{{ asset('assets/front/js/cart.js') }}"></script>
 
 
 

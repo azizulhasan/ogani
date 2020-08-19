@@ -1,0 +1,293 @@
+
+
+
+///////////////////////////////////////////
+USER MANAGEMENT
+///////////////////////////////////////////
+
+users:
+=========
+create table users(
+id int  not null auto_increment primary key,
+name varchar(50), 
+email varchar(50) unique,
+password varchar(32) ,
+
+
+contact varchar(20),
+address  varchar(255) null, 
+roll_type_id int
+
+);
+
+
+
+roll_type:
+==========
+create table user_type(
+id int not null auto_increment primary key,
+roll_name varchar(70)	
+);
+
+
+
+///////////////////////////////////////////
+PRODUCT MANAGEMENT
+///////////////////////////////////////////
+
+
+
+Products:
+=========
+
+create table products(
+id mediumint unsigned not null auto_increment,
+name varchar(150) not null,
+
+category_id,
+sub_catgory_id,
+unit_id int(10),
+user_id,
+
+size_id,
+color_id,
+brand_id,
+
+
+product_description text,
+picture1 varchar(100),
+picture2 varchar(100), 
+picture3 varchar(100), 
+picture4 varchar(4) not null,
+default_picture4 varchar(4) not null, 
+
+);
+
+price_setting:
+==============
+id 
+product_id
+price
+old_price float,
+
+
+discount_setting:
+===============
+id
+product_id
+discount_parcent
+
+
+
+bran : 
+======
+
+color:
+=====
+
+size:
+m, xl
+
+
+
+
+
+purchase id , date  , reference_no = chalan no
+purchase_detail id, purchase_id ,  product_id =1,2,3,  quantity, parchase_rate,
+
+purchase_return   id , date , reference_no = chalan no
+purchase_return_detail   id, purchase_return_id,  product_id =1,2,3,  quantity, parchase_return_rate
+
+
+
+sales_confirm
+
+
+
+
+
+
+units:
+======
+create table units(
+id int unsigned not null auto_increment primary key,
+unit_name varchar(30) unique not null,
+);
+
+
+product_stock:
+=============
+create table product_stock(
+id int(10)  primary key auto_increment,
+product_id mediumint ,
+quantity float default 0,
+unit_id int(10),
+unit_cost float,
+
+purchase_date  datetime
+
+);
+
+
+
+/////////////////////////////////////
+CATEGORY MANAGEMENT
+////////////////////////////////////
+product_categories:
+==========
+
+create table product_categories(
+id smallint unsigned not null auto_increment,
+name varchar(30) not null,
+primary key(id),
+unique key(name)
+);
+
+
+
+
+
+subcategories:
+=============
+
+create table subcategories(
+id mediumint unsigned not null auto_increment,
+name varchar(30) not null,
+categorie_id smallint unsigned not null, 
+primary key(id),unique key(name),
+foreign key(categorie_id) references categories(id)
+);
+
+
+
+
+
+reviews:
+=======
+create table reviews(
+id tinyint unsigned not null auto_increment,
+product_id mediumint unsigned not null, 
+customer_id smallint unsigned not null,
+description varchar(255) not null,
+ratings tinyint not null, 
+primary key(id),
+foreign key(customer_id)references customers(id) ,
+foreign key(product_id)references products(id)
+);
+
+
+
+
+
+
+///////////////////////////////////////////
+ORDER MANAGEMENT
+///////////////////////////////////////////
+
+orders:
+=======
+create table orders(
+id int unsigned not null auto_increment,
+orderdate datetime not null,
+cupon_id int(10),
+delivery_date datetime not null,
+payment_method_id tinyint unsigned not null,
+payment_info varchar(255) not null, 
+shipping_status varchar(100) not null,
+shippings_id tinyint unsigned not null,
+);
+
+
+
+
+order_dtails:
+=============
+create table order_dtails(
+id int(10) primary ke auto_increment,
+order_id int(10) ,
+product_id int(10),
+quantity float default 0,
+vat float unsigned not null,
+discount float unsigned not null,
+unit_price float
+);
+
+
+
+sales_return:
+===========
+id, date, cutomer_id
+
+seles_return_detail:
+==================
+id , seles_return_id, product_id  , quantity , return_amount
+
+
+
+shippings:
+=========
+create table shippings(
+id tinyint unsigned not null auto_increment,
+customer_id smallint unsigned not null,
+address varchar(255) not null,
+);
+
+
+order_status:
+
+id
+status
+
+
+
+
+/////////////////////////////////////
+COUNTRY MANAGEMENT
+////////////////////////////////////
+
+countries:
+=========
+create table countries(
+id tinyint unsigned not null auto_increment,
+name varchar(30) not null,
+primary key(id),
+unique key(name)
+);
+
+cities:
+=======
+
+create table cities(
+id smallint unsigned not null auto_increment,
+name varchar(30) not null,
+country_id tinyint unsigned not null, 
+primary key(id),unique key(name),
+foreign key(country_id) references countries(id)
+);
+
+
+
+
+
+
+/////////////////////////////////////
+PAYMENT MANAGEMENT
+////////////////////////////////////
+
+payment_methods :
+==============
+
+create table payment_method(
+id tinyint unsigned not null auto_increment,
+name varchar(30) not null, 
+details varchar(50)not null, 
+primary key(id),
+unique key(name)
+);
+
+
+
+
+
+
+
